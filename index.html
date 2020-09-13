@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<body onload="start()" >
+<h3>A code beutifyer based on a meme</h3>
+
+<textarea id= "input" style=" height: 500px;">input</textarea>
+<textarea id= "output"  style=" height: 500px;">output</textarea>
+<p>Click the button to let your dreams become memes</p>
+
+<button onclick="myFunction()">DO IT</button>
+
+
+<script>
+function start()                                                                              {
+      document.getElementById("input").style.width=window.innerWidth-32+"px"                  ;
+      console.log(window.innerWidth/2)                                                        ;
+      document.getElementById("output").style.width=window.innerWidth-32+"px"                ;}
+
+function myFunction()                                                                         {
+      console.log("test")                                                                     ;
+      var x = document.getElementById("input").value                                          ;
+      var arr = []                                                                            ;
+      var count=0                                                                             ;
+      var count2=0                                                                            ;
+      x = x.split("\n")                                                                       ;
+      for(var y=0                                                                             ;
+      y<x.length                                                                              ;
+      y++)                                                                                    {
+            x[y]=x[y].trim()                                                                 ;}
+      x=x.join("")                                                                            ;
+      var on=true                                                                             ;
+      for(var t=0                                                                             ;
+      t<x.length-1                                                                            ;
+      t++)                                                                                    {
+            if(x[t]=='"'&&!on)                                                                {
+                  on=true                                                                    ;}
+            else if((x[t]=='"')&&on)                                                          {
+                  on=false                                                                   ;}
+            if(x[t]=="{"&&on)                                                                 {
+                  count++                                                                    ;}
+            if(x[t]=="}"&&on)                                                                 {
+                  count--                                                                    ;}
+            if((x[t]==";"||x[t]=="{"||x[t]=="}")&&(x[t+1]!=";"&&x[t+1]!="{"&&x[t+1]!="}")&&on){
+                  if(count!=0)                                                                {
+                        arr.push("      ".repeat(count2)+ x.substr(0,t+1).trim())             ;
+                        count2=count                                                         ;}
+                  else                                                                        {
+                        arr.push(x.substr(0,t+1).trim())                                     ;}
+                  x=x.substr(t+1)                                                             ;
+                  t=0                                                                       ;}}
+      arr.push("      ".repeat(count2)+x)                                                     ;
+      var ma=0                                                                                ;
+      for(var t=0                                                                             ;
+      t<arr.length                                                                            ;
+      t++)                                                                                    {
+            if(arr[t].length>ma)                                                              {
+                  ma=arr[t].length                                                          ;}}
+      for(var t=0                                                                             ;
+      t<arr.length                                                                            ;
+      t++)                                                                                    {
+            if (arr[t].length!=ma)                                                            {
+                  var len=500                                                                 ;
+                  if(arr[t].indexOf(";")!=-1&&arr[t].indexOf(";")<len)                        {
+                        len=arr[t].indexOf(";")                                              ;}
+                  if(arr[t].indexOf("{")!=-1&&arr[t].indexOf("{")<len)                        {
+                        len=arr[t].indexOf("{")                                              ;}
+                  if(arr[t].indexOf("}")!=-1&&arr[t].indexOf("}")<len)                        {
+                        len=arr[t].indexOf("}")                                              ;}
+                  console.log(len)                                                            ;
+                  arr[t]=arr[t].substr(0,len)+" ".repeat(ma-arr[t].length)+arr[t].substr(len) ;
+                  // arr[t]=arr[t].substr(0,len)+" ".repeat(ma-len)+arr[t].substr(len)        ;
+                                                                                             }}
+      document.getElementById("output").innerHTML = arr.join("\n")                           ;}
+</script>
+
+</body>
+</html>
+
