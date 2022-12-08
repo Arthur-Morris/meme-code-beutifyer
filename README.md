@@ -1,4 +1,4 @@
-# meme-code-beutifyer
+# meme-code-beautifier
 don't you hate how you the semicolon and squiggly brackets touch your code, ewww 🤮.
 
 wouldn't it be better to keep them nice and organised in a nice straight line on the right side of the screen, just run you code thru this code beautifier and watch them all line up, nice and out of the way.
